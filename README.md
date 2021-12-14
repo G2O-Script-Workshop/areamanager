@@ -12,7 +12,8 @@ This package contains two files:
 
     The manager which gives you possibility to add your area to processed areas list.  
     The processed area will check for each 500 ms if the hero/player is in the specified area.  
-    It will also call the ``onEnter`` and ``onExit`` callbacks, when hero/player enters or exits specific area.
+    It will also call the ``onEnter`` and ``onExit`` callbacks, when hero/player enters or exits specific area.  
+    This script requires **ONE TIMER** to work.
 
 ## How to install?
 
