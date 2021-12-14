@@ -122,8 +122,4 @@ else if (SERVER_SIDE)
 setTimer(function()
 {
 	AreaManager.process()
-<<<<<<< HEAD
 }, 500, 0)
-=======
-}, 500, 0)
->>>>>>> 0f781ef27b56bd1e359bb22d2eaf22f37424a93f
