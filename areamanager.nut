@@ -46,6 +46,9 @@ function AreaManager::remove(area)
 
 if (CLIENT_SIDE)
 {
+	addEvent("onEnterZone");
+	addEvent("onExitZone");
+	
 	AreaManager.heroAreas <- {}
 
 	function AreaManager::process()
@@ -66,11 +69,13 @@ if (CLIENT_SIDE)
 			{
 				heroAreas[area] <- true
 				enterCallbacks[area]()
+				callEvent("onEnterZone", area);
 			}
 			else if ((area in heroAreas) && !isIn)
 			{
 				delete heroAreas[area]
 				exitCallbacks[area]()
+				callEvent("onExitZone", area);
 			}
 		}
 	}
@@ -78,6 +83,9 @@ if (CLIENT_SIDE)
 
 else if (SERVER_SIDE)
 {
+	addEvent("onPlayerEnterZone");
+	addEvent("onPlayerExitZone");
+	
 	AreaManager.playersAreas <- []
 
 	for (local pid = 0, end = getMaxSlots(); pid < getMaxSlots(); ++pid)
@@ -108,11 +116,13 @@ else if (SERVER_SIDE)
 				{
 					playerAreas[area] <- true
 					enterCallbacks[area](pid)
+					callEvent("onPlayerEnterZone", pid, area);
 				}
 				else if ((area in playerAreas) && !isIn)
 				{
 					delete playerAreas[area]
 					exitCallbacks[area](pid)
+					callEvent("onPlayerExitZone", pid, area);
 				}
 			}
 		}
